@@ -1,32 +1,21 @@
 package hello.core;
 
-import hello.core.repository.JdbcTemplateMemberRepository;
-import hello.core.repository.JpaMemberRepository;
 import hello.core.repository.MemberRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import hello.core.service.MemberService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import javax.persistence.EntityManager;
-import javax.sql.DataSource;
 
 @Configuration
 public class SpringConfig {
 
-    private EntityManager em;
+    private final MemberRepository memberRepository;
 
-    @Autowired
-    public SpringConfig(EntityManager em) {
-        this.em = em;
+    public SpringConfig(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
     }
 
-    /*@Bean
-    public MemberService memberService() {
-        return new MemberService(memberRepository());
-    }*/
-
     @Bean
-    public MemberRepository memberRepository() {
-        return new JpaMemberRepository(em);
+    public MemberService memberService() {
+        return new MemberService(memberRepository);
     }
 }

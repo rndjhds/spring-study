@@ -3,14 +3,12 @@ package hello.core.service;
 import hello.core.domain.Member;
 import hello.core.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-@Service
 @Transactional
 public class MemberService {
 
