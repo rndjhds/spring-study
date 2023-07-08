@@ -1,8 +1,21 @@
 package hello.core.domain;
 
+import javax.persistence.*;
+
+@Entity
+@SequenceGenerator(
+        name = "MEMBER_SEQ_GENERATOR",
+        sequenceName = "MEMBER_SEQUENCE",
+        initialValue = 1,
+        allocationSize = 1
+)
 public class Member {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MEMBER_SEQ_GENERATOR")
     private Long id;
+
+    @Column
     private String name;
 
     public Long getId() {
