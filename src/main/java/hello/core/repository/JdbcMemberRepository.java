@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Repository
 public class JdbcMemberRepository implements MemberRepository {
 
     private final DataSource dataSource;
@@ -33,8 +32,6 @@ public class JdbcMemberRepository implements MemberRepository {
 
             pstmt.setString(1, member.getName());
             int result = pstmt.executeUpdate();
-
-            rs = pstmt.getResultSet();
 
             if (result != 0) {
                 member.setId(findByName(member.getName()).get().getId());
